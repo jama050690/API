@@ -1,0 +1,11 @@
+{
+	"name": "api",
+	"type": "module",
+	"scripts": {
+		"dev": "node --env-file=.env --watch src/index.js",
+		"start": "start --env-file=.env --watch src/index.js"
+	},
+	"dependencies": {
+		"fastify": "^5.7.4"
+	}
+}
