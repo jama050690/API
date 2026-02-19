@@ -6,6 +6,7 @@ export default function (server) {
       // request needs to have a body with `username` and `password`
       body: {
         type: "object",
+        additionalProperties: false,
         properties: {
           username: {
             type: "string",
@@ -32,7 +33,7 @@ export default function (server) {
       // E.g. check authentication
     },
     handler: async (request, reply) => {
-      return { message: "true" };
+      return reply.code(201).send({ message: "ok" });
     },
   });
 }
