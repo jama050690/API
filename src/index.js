@@ -1,14 +1,13 @@
 import Fastify from "fastify"
+import Routes from "./routes/index.js"
 
 const PORT = process.env.PORT
+const server = Fastify({ logger: true })
 
-const server = Fastify( { logger: true } )
+server.register(Routes, { prefix: "/routes" })
 
-server.get( "/", () => {
+server.get("/", () => {
+	return { ok: true }
+})
 
-	return {
-		ok: true,
-	}
-} )
-
-server.listen( { port: PORT } )
+server.listen({ port: PORT })
