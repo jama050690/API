@@ -3,7 +3,6 @@ export default function (server) {
     method: "POST",
     url: "/login",
     schema: {
-      // request needs to have a body with `username` and `password`
       body: {
         type: "object",
         additionalProperties: false,
@@ -17,7 +16,6 @@ export default function (server) {
         },
         required: ["username", "password"],
       },
-      // the response needs to be an object with a `message` property
       response: {
         201: {
           type: "object",
@@ -27,10 +25,8 @@ export default function (server) {
         },
       },
     },
-
-    // this function is executed for every request before the handler is executed
-    preHandler: async (request, reply) => {
-      // E.g. check authentication
+    preHandler: async (request) => {
+      request.log.info("Login so'rovi keldi");
     },
     handler: async (request, reply) => {
       return reply.code(201).send({ message: "ok" });
