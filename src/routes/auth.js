@@ -1,4 +1,10 @@
 export default function (server) {
+  // Oddiy router uchun;
+  // server.get("/",{
+  //   config:{
+  //     rateLimit:false,
+  //   }
+  // })
   server.route({
     method: "POST",
     url: "/signup",
@@ -31,6 +37,9 @@ export default function (server) {
           },
         },
       },
+    },
+    config: {
+      rateLimit: false,
     },
     preHandler: async (request) => {
       request.log.info("Signup so'rovi keldi");
