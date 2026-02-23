@@ -1,3 +1,4 @@
+import argon2 from "argon2";
 export default function (server) {
   // Oddiy router uchun;
   // server.get("/",{
@@ -45,7 +46,27 @@ export default function (server) {
       request.log.info("Signup so'rovi keldi");
     },
     handler: async (request, reply) => {
-      return reply.code(201).send({ message: "ok" });
+      const { fullname, username, email, password } = request.body;
+
+      // Username yoki email allaqachon mavjudligini tekshirish
+      const existing = await server.db.query(
+        "SELECT id FROM users WHERE username = $1 OR email = $2",
+        [username, email]
+      );
+      if (existing.rows.length > 0) {
+        return reply.code(409).send({ message: "Username yoki email allaqachon mavjud" });
+      }
+
+      // Parolni hash qilish
+      const hashedPassword = await argon2.hash(password);
+
+      // Bazaga yozish
+      await server.db.query(
+        "INSERT INTO users (fullname, username, email, password) VALUES ($1, $2, $3, $4)",
+        [fullname, username, email, hashedPassword]
+      );
+
+      return reply.code(201).send({ message: "Ro'yxatdan muvaffaqiyatli o'tdingiz" });
     },
   });
 }

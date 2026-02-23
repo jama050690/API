@@ -7,6 +7,7 @@ import oauthPlugin from "@fastify/oauth2";
 import cookie from "@fastify/cookie";
 import jwt from "@fastify/jwt";
 
+
 const PORT = process.env.PORT || 3000;
 const server = fastify({ logger: true });
 
