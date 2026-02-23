@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Register</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="min-h-screen bg-slate-950">
+    <div class="flex min-h-screen">
+      <!-- LEFT: LOGIN FORM -->
+      <div
+        class="w-full md:w-1/2 bg-white flex flex-col items-center justify-center px-6"
+      >
+        <div class="w-full mt-3 max-w-md">
+          <h2 class="text-2xl font-bold text-center mb-4">SignUp</h2>
+
+          <form id="loginForm" class="w-full flex flex-col px-4 py-4 gap-4">
+            <!-- USERNAME -->
+            <div class="relative">
+              <input
+                name="username"
+                class="peer w-full h-[52px] px-4 pr-12 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                type="text"
+                placeholder=" "
+              />
+              <label
+                class="absolute left-4 top-0 -translate-y-1/2 bg-white px-1 text-xs text-gray-500 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-xs peer-focus:text-blue-600"
+                >Username</label
+              >
+              <i
+                class="fa-solid fa-circle-user absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+              ></i>
+            </div>
+
+            <!-- EMAIL -->
+            <div class="relative">
+              <input
+                name="email"
+                type="email"
+                placeholder=" "
+                required
+                class="peer w-full h-[52px] px-4 pr-12 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+
+              <label
+                class="absolute left-4 top-0 -translate-y-1/2 bg-white px-1 text-xs text-gray-500 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-xs peer-focus:text-blue-600"
+              >
+                Email
+              </label>
+
+              <i
+                class="fa-solid fa-envelope absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+              ></i>
+            </div>
+            <!-- PASSWORD -->
+            <div class="relative">
+              <input
+                name="password"
+                id="password"
+                type="password"
+                placeholder=" "
+                required
+                class="peer w-full h-[52px] px-4 pr-12 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+
+              <label
+                class="absolute left-4 top-0 -translate-y-1/2 bg-white px-1 text-xs text-gray-500 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-xs peer-focus:text-blue-600"
+              >
+                Password
+              </label>
+
+              <i
+                id="togglePassword"
+                class="fa-solid fa-eye absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer text-gray-400 hover:text-gray-600"
+              ></i>
+            </div>
+            <!-- AGE -->
+            <div class="relative">
+              <input
+                name="age"
+                type="number"
+                class="peer w-full h-[56px] pl-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder=" "
+              />
+              <label
+                class="absolute left-4 top-0 -translate-y-1/2 bg-white px-1 text-xs text-gray-500 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-xs peer-focus:text-blue-600"
+                >Age</label
+              >
+            </div>
+            <div class="flex gap-4">
+              <label class="block text-left font-medium">Gender</label>
+
+              <label
+                ><input type="radio" name="gender" value="male" /> Male</label
+              >
+              <label
+                ><input type="radio" name="gender" value="female" />
+                Female</label
+              >
+            </div>
+
+            <!-- SUBMIT -->
+            <button
+              type="submit"
+              class="mt-4 h-[52px] rounded-xl bg-red-600 text-white hover:bg-red-700 transition"
+            >
+              Send
+            </button>
+          </form>
+
+          <div class="flex items-center w-full my-6">
+            <span class="flex-1 h-px bg-gray-300"></span>
+
+            <span class="px-3 text-sm text-gray-400"> or sign in with </span>
+
+            <span class="flex-1 h-px bg-gray-300"></span>
+          </div>
+          <div class="flex gap-3">
+            <button
+              type="button"
+              class="w-[100px] cursor-pointer h-12 bg-white border border-gray-300 rounded-lg flex items-center justify-center hover:bg-green-500 transition"
+            >
+              <i class="fa-brands fa-linkedin text-blue-700 text-xl"></i>
+            </button>
+            <button
+              type="button"
+              class="w-[100px] cursor-pointer h-12 bg-white border border-gray-300 rounded-lg flex items-center justify-center hover:bg-green-500 transition"
+            >
+              <img
+                class="h-5"
+                src="./public/images/photo_2025-10-02_11-44-57.jpg"
+                alt="Google"
+              />
+            </button>
+            <button
+              type="button"
+              id="githubLoginBtn"
+              class="flex items-center cursor-pointer mb-[100px] justify-center gap-3 w-[100px] h-12 rounded-xl border border-gray-300 hover:bg-green-500 transition"
+            >
+              <i class="fa-brands fa-github text-xl"></i>
+            </button>
+          </div>
+          <div class="text-start">
+            <p class="mt-6 mb-3 text-center text-sm text-gray-400">
+              No account?
+              <a href="/login" class="text-blue-600 hover:underline"> Login </a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: BACKGROUND IMAGE -->
+      <div
+        class="hidden md:block md:w-1/2 bg-cover bg-center"
+        style="background-image: url(./public/images/6057555.webp)"
+      ></div>
+    </div>
+
+    <script type="module" src="/src/signup.js"></script>
+    <script type="module" src="/src/login.js"></script>
+  </body>
+</html>
