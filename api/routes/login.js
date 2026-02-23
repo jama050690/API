@@ -9,14 +9,15 @@ export default function (server) {
         type: "object",
         additionalProperties: false,
         properties: {
-          username: {
+          email: {
             type: "string",
+            format: "email",
           },
           password: {
             type: "string",
           },
         },
-        required: ["username", "password"],
+        required: ["email", "password"],
       },
       response: {
         200: {
@@ -31,15 +32,15 @@ export default function (server) {
       request.log.info("Login so'rovi keldi");
     },
     handler: async (request, reply) => {
-      const { username, password } = request.body;
+      const { email, password } = request.body;
 
       // Foydalanuvchini bazadan topish
       const result = await server.db.query(
-        "SELECT id, username, password FROM users WHERE username = $1",
-        [username]
+        "SELECT id, username, email, password FROM users WHERE email = $1",
+        [email]
       );
       if (result.rows.length === 0) {
-        return reply.code(401).send({ message: "Username yoki parol noto'g'ri" });
+        return reply.code(401).send({ message: "Email yoki parol noto'g'ri" });
       }
 
       const user = result.rows[0];
@@ -47,11 +48,11 @@ export default function (server) {
       // Parolni tekshirish
       const valid = await argon2.verify(user.password, password);
       if (!valid) {
-        return reply.code(401).send({ message: "Username yoki parol noto'g'ri" });
+        return reply.code(401).send({ message: "Email yoki parol noto'g'ri" });
       }
 
       // JWT token yaratish
-      const token = server.jwt.sign({ id: user.id, username: user.username });
+      const token = server.jwt.sign({ id: user.id, username: user.username, email: user.email });
 
       return reply
         .setCookie("token", token, {
