@@ -2,10 +2,10 @@
 const BASE_API_URL = "http://localhost:3000";
 
 const form = document.getElementById("loginForm");
-
 const password = document.getElementById("password");
 const toggle = document.getElementById("togglePassword");
 const githubLoginBtn = document.getElementById("githubLoginBtn");
+const googleLoginBtn = document.getElementById("googleLoginBtn");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -42,6 +42,10 @@ toggle.addEventListener("click", () => {
   password.type = isHidden ? "text" : "password";
   toggle.classList.toggle("fa-eye");
   toggle.classList.toggle("fa-eye-slash");
+});
+
+googleLoginBtn.addEventListener("click", () => {
+  window.location.href = `${BASE_API_URL}/login/google`;
 });
 
 githubLoginBtn.addEventListener("click", () => {

@@ -1,12 +1,25 @@
-import Routes from "./routes/index.js";
-import dbPlugin from "./plugins/db.js";
+import Routes from "../routes/index.js";
+import dbPlugin from "../plugins/db.js";
 
 import fastify from "fastify";
+import cors from "@fastify/cors";
 import oauthPlugin from "@fastify/oauth2";
 import cookie from "@fastify/cookie";
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const server = fastify({ logger: true });
+
+// CORS — frontenddan so'rovlarni qabul qilish
+server.register(cors, {
+  origin: "http://localhost:5173",
+  credentials: true,
+});
+
+// Database plugin
+server.register(dbPlugin);
+
+// Routes (signup, login, main)
+server.register(Routes);
 
 // Cookie plugin
 server.register(cookie, {
@@ -47,7 +60,7 @@ server.get("/login/google/callback", async function (request, reply) {
 
     const userInfo = await userResponse.json();
 
-    // Cookie'ga token saqlash (yoki DB'ga)
+    // Cookie'ga token saqlash
     reply.setCookie("token", token.access_token, {
       path: "/",
       httpOnly: true,
@@ -55,15 +68,8 @@ server.get("/login/google/callback", async function (request, reply) {
       maxAge: 3600,
     });
 
-    return {
-      message: "Login muvaffaqiyatli!",
-      user: {
-        id: userInfo.id,
-        name: userInfo.name,
-        email: userInfo.email,
-        picture: userInfo.picture,
-      },
-    };
+    // Frontendga redirect
+    return reply.redirect("http://localhost:5173/");
   } catch (err) {
     server.log.error(err);
     reply.status(500).send({ error: "Authentication xatolik" });
@@ -93,17 +99,8 @@ server.get("/profile", async (request, reply) => {
   return { user: userInfo };
 });
 
-// Bosh sahifa
-server.get("/", async () => {
-  return {
-    message: "Google OAuth demo",
-    login: "GET /login/google — Google orqali kirish",
-    profile: "GET /profile — Profil ko'rish",
-  };
-});
-
 // Server ishga tushirish
-server.listen({ port: 3000 }, (err) => {
+server.listen({ port: PORT }, (err) => {
   if (err) {
     server.log.error(err);
     process.exit(1);

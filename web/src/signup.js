@@ -1,5 +1,6 @@
 const BASE_API_URL = "http://localhost:3000";
 const form = document.getElementById("loginForm");
+const googleLoginBtn = document.getElementById("googleLoginBtn");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -22,6 +23,10 @@ form.addEventListener("submit", async (e) => {
     console.error(err);
     alert("Server error");
   }
+});
+
+googleLoginBtn.addEventListener("click", () => {
+  window.location.href = `${BASE_API_URL}/login/google`;
 });
 
 export async function register(data) {

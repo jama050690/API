@@ -19,6 +19,23 @@
           <h2 class="text-2xl font-bold text-center mb-4">SignUp</h2>
 
           <form id="loginForm" class="w-full flex flex-col px-4 py-4 gap-4">
+            <!-- FullNAME -->
+            <div class="relative">
+              <input
+                name="fullname"
+                class="peer w-full h-[52px] px-4 pr-12 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                type="text"
+                placeholder=" "
+              />
+              <label
+                class="absolute left-4 top-0 -translate-y-1/2 bg-white px-1 text-xs text-gray-500 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-xs peer-focus:text-blue-600"
+                >Fullname</label
+              >
+              <i
+                class="fa-solid fa-circle-user absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+              ></i>
+            </div>
+
             <!-- USERNAME -->
             <div class="relative">
               <input
@@ -79,29 +96,6 @@
               ></i>
             </div>
             <!-- AGE -->
-            <div class="relative">
-              <input
-                name="age"
-                type="number"
-                class="peer w-full h-[56px] pl-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder=" "
-              />
-              <label
-                class="absolute left-4 top-0 -translate-y-1/2 bg-white px-1 text-xs text-gray-500 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-xs peer-focus:text-blue-600"
-                >Age</label
-              >
-            </div>
-            <div class="flex gap-4">
-              <label class="block text-left font-medium">Gender</label>
-
-              <label
-                ><input type="radio" name="gender" value="male" /> Male</label
-              >
-              <label
-                ><input type="radio" name="gender" value="female" />
-                Female</label
-              >
-            </div>
 
             <!-- SUBMIT -->
             <button
@@ -119,7 +113,7 @@
 
             <span class="flex-1 h-px bg-gray-300"></span>
           </div>
-          <div class="flex gap-3">
+          <div class="flex gap-3 justify-center">
             <button
               type="button"
               class="w-[100px] cursor-pointer h-12 bg-white border border-gray-300 rounded-lg flex items-center justify-center hover:bg-green-500 transition"
@@ -128,6 +122,7 @@
             </button>
             <button
               type="button"
+              id="googleLoginBtn"
               class="w-[100px] cursor-pointer h-12 bg-white border border-gray-300 rounded-lg flex items-center justify-center hover:bg-green-500 transition"
             >
               <img
@@ -139,7 +134,7 @@
             <button
               type="button"
               id="githubLoginBtn"
-              class="flex items-center cursor-pointer mb-[100px] justify-center gap-3 w-[100px] h-12 rounded-xl border border-gray-300 hover:bg-green-500 transition"
+              class="flex items-center cursor-pointer justify-center gap-3 w-[100px] h-12 rounded-xl border border-gray-300 hover:bg-green-500 transition"
             >
               <i class="fa-brands fa-github text-xl"></i>
             </button>
